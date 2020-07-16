@@ -2,7 +2,8 @@ import os
 import pathlib
 
 
-BASE_DIR = pathlib.Path(__file__).paren
+BASE_DIR = pathlib.Path(__file__).parent
+UPLOADS_DIR = BASE_DIR / 'uploads'
 
 
 class Config:
