@@ -1,4 +1,4 @@
-from flask import Blueprint, request, send_file
+from flask import Blueprint, request, send_file, jsonify
 
 import settings
 
@@ -17,10 +17,11 @@ def upload():
     else:
         if not file.filename:
             return '', 400
-        result = FileService().upload(file, ttl)
-        if not result:
+        url = FileService().upload(file, ttl)
+        if not url:
             return '', 400
-        return '', 201
+        response = {'url': url}
+        return jsonify(response), 201
 
 
 @api_bp.route('/download/<uuid>', methods=['GET'])

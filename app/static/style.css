@@ -1,0 +1,45 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #4f5355;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+.title {
+    flex: 1;
+}
+
+.navbar {
+    flex: 1;
+    display: flex;
+    text-align: end;
+}
+
+.navbar ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+}
+
+.navbar li {
+    flex: 5;
+}
+
+.navbar li:nth-of-type(2) {
+    flex: 1;
+}
+
+.site-area {
+    display: flex;
+    height: 100%;
+    margin: 20px;
+}

@@ -1,25 +1,11 @@
-<!doctype html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block title %}
+File Sharing | Home
+{% endblock %}
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('main.static', filename='style.css') }}">
-
-    <title>
-        {% block title %} {% endblock %}
-    </title>
-
-</head>
-
-<body>
-
-    {% block body %}
-
-    {% endblock %}
-
-</body>
-
-
-</html>
+{% block site_area %}
+    <div class="upload-form">
+        <h5>Hello</h5>
+    </div>
+{% endblock %}

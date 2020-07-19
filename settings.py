@@ -4,6 +4,7 @@ import pathlib
 
 BASE_DIR = pathlib.Path(__file__).parent
 UPLOADS_DIR = BASE_DIR / 'uploads'
+DOMAIN = '127.0.0.1:5000'
 
 
 class Config:

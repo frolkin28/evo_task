@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('main.static', filename='style.css') }}">
+
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="title">
+            <h3>File Sharing</h3>
+        </div>
+        <div class="navbar">
+            <ul class="navbar">
+                <li>Upload</li>
+                <li>All files</li>
+            </ul>
+        </div>
+    </div>
+    <div class="site-area">
+        {% block site_area %}
+
+        {% endblock %}
+    </div>
+
+</body>
+
+
+</html>

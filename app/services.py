@@ -15,11 +15,11 @@ from app.models import File
 
 
 class FileService:
-    def upload(self, file: FileStorage, ttl: str) -> bool:
+    def upload(self, file: FileStorage, ttl: str) -> typing.Optional[str]:
         original_filename = secure_filename(file.filename)
         filename, extention = self.validate_filename(original_filename)
         if not (filename and extention):
-            return False
+            return None
         else:
             uuid, filename = self.generate_unique_name(filename, extention)
             path = settings.UPLOADS_DIR / filename
@@ -29,7 +29,8 @@ class FileService:
             db.session.add(File(str(path), original_filename, ttl, uuid))
             db.session.commit()
             
-            return True
+            url = '{}/{}/{}'.format(settings.DOMAIN, 'download', uuid)
+            return url
 
     def download(self, uuid: str) -> typing.Tuple:
         file = db.session.query(File).filter_by(uuid=uuid).first()
