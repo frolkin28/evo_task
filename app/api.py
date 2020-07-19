@@ -1,6 +1,9 @@
-from flask import Blueprint, request, send_from_directory
+from flask import Blueprint, request, send_file
 
 import settings
+
+from app.services import FileService
+from app.exceptions import FileExpired
 
 api_bp = Blueprint('api', __name__)
 
@@ -8,18 +11,22 @@ api_bp = Blueprint('api', __name__)
 @api_bp.route('/upload', methods=['POST'])
 def upload():
     file = request.files.get('file', None)
-    if not file:
-        return 404
+    ttl = request.form.get('ttl', None)
+    if not file or not ttl:
+        return '', 400
     else:
         if not file.filename:
-            return 404
-        file.save(settings.UPLOADS_DIR / file.filename)
-    return "", 201
+            return '', 400
+        result = FileService().upload(file, ttl)
+        if not result:
+            return '', 400
+        return '', 201
 
 
-@api_bp.route('/download/<filename>', methods=['GET'])
-def download(filename):
+@api_bp.route('/download/<uuid>', methods=['GET'])
+def download(uuid):
     try:
-        return send_from_directory(settings.UPLOADS_DIR, filename=filename, as_attachment=True)
-    except FileNotFoundError:
+        path, name = FileService().download(uuid)
+        return send_file(path, attachment_filename=name, as_attachment=True)
+    except (FileNotFoundError, FileExpired) as exc:
         return '', 404

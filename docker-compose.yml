@@ -10,8 +10,12 @@ services:
             - postgres
         networks: 
             - fs_network
+        env_file: 
+            - .env
         volumes: 
             - ./:/file_sharing
+        ports:
+            - 5000:5000
 
     postgres:
         container_name: fs_db

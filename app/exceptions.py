@@ -1,0 +1,2 @@
+class FileExpired(Exception):
+    pass

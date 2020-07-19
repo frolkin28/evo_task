@@ -4,7 +4,6 @@ WORKDIR /file_sharing
 COPY requirements.txt .
 
 RUN apt-get update \
-&& apt-get install gcc -y \
 && pip install -r requirements.txt \
 && rm -rf /var/lib/apt/lists/*
 
