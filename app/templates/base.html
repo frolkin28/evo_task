@@ -21,17 +21,16 @@
         </div>
         <div class="navbar">
             <ul class="navbar">
-                <li>Upload</li>
-                <li>All files</li>
+                <li><a href="{{ url_for('main.home') }}">Upload</a></li>
             </ul>
         </div>
     </div>
-    <div class="site-area">
-        {% block site_area %}
-
-        {% endblock %}
+    
+    {% block site_area %}
+    {% endblock %}
     </div>
 
+    <script src="{{ url_for('main.static', filename='script.js') }}"></script>
 </body>
 
 

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ name }}
+{% endblock %}
+
+{% block site_area %}
+<div class="site-area">
+    <div id="file">
+        <div id="filename">
+            <h5>File name: {{ name }}</h5>
+        </div>
+        <div id="expire">
+            <h5>Expire at {{ ttl }}</h5>
+        </div>
+        <div id="download">
+            <a href="{{ url_for('api.download', uuid=uuid) }}" class="button">Download</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

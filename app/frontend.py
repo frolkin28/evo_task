@@ -2,6 +2,8 @@ from flask import Blueprint, render_template
 
 import settings
 
+from app.services import FileService
+
 main = Blueprint(
     'main',
     __name__,
@@ -13,3 +15,13 @@ main = Blueprint(
 @main.route('/')
 def home():
     return render_template('index.html')
+
+
+@main.route('/file/<uuid>')
+def get_file(uuid):
+    file = FileService().get_file(uuid)
+    name, ttl, uuid = file.name, file.ttl, file.uuid
+    if not file:
+        return render_template('404.html')
+    else:
+        return render_template('file.html', name=name, ttl=ttl, uuid=uuid)

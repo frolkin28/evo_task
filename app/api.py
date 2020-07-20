@@ -1,4 +1,4 @@
-from flask import Blueprint, request, send_file, jsonify
+from flask import Blueprint, request, send_file, jsonify, render_template
 
 import settings
 
@@ -30,4 +30,11 @@ def download(uuid):
         path, name = FileService().download(uuid)
         return send_file(path, attachment_filename=name, as_attachment=True)
     except (FileNotFoundError, FileExpired) as exc:
-        return '', 404
+        return render_template('404.html')
+
+
+@api_bp.route('/delete/<uuid>', methods=['DELETE'])
+def delete(uuid):
+    print('UUID ', uuid)
+    FileService().delete_file(uuid)
+    return '', 200

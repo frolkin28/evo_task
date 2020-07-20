@@ -42,4 +42,63 @@ body {
     display: flex;
     height: 100%;
     margin: 20px;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.form-title {
+    flex: 1;
+    text-align: center;
+}
+
+.upload-form {
+    flex: 1; 
+    border: solid 2px #ffffff42;
+    border-radius: 2%;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.upload-form button {
+    margin-left: 10px;
+}
+
+.upload-form input {
+    margin: 10px;
+}
+
+.not-found h5 {
+    font-size: 72px;
+}
+
+#file {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#filename {
+    flex: 1;
+}
+
+#expire {
+    flex: 1;
+}
+
+#download {
+    flex: 1;
+}
+
+#download a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
 }

@@ -5,7 +5,21 @@ File Sharing | Home
 {% endblock %}
 
 {% block site_area %}
-    <div class="upload-form">
-        <h5>Hello</h5>
+<div class="site-area">
+    <div>
+        <div class="form-title">
+            <h3>Upload file</h3>
+        </div>
+        <form class="upload-form">
+            <input id="file" type="file">
+            <br>
+            <input id="datetime" type="datetime-local" value="2020/12/31 23:59">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="url">
+            <h5></h5>
+        </div>
     </div>
+</div>
 {% endblock %}

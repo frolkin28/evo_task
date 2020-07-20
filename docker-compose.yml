@@ -6,8 +6,11 @@ services:
         restart: on-failure
         build:
             context: .
+            dockerfile: backend.Dockerfile
+        command: python3.7 wsgi.py
         depends_on: 
             - postgres
+            - rabbitmq
         networks: 
             - fs_network
         env_file: 
@@ -15,7 +18,7 @@ services:
         volumes: 
             - ./:/file_sharing
         ports:
-            - 5000:5000
+            - 5000:5000    
 
     postgres:
         container_name: fs_db
@@ -30,9 +33,41 @@ services:
         volumes: 
             - fs-postgres-data:/var/lib/postgresql/data
 
+    rabbitmq:
+        container_name: fs_broker
+        image: rabbitmq:3.8.5-alpine
+        restart: on-failure
+        ports:
+            - 5672:5672
+        env_file:
+            - .env
+        networks: 
+            - fs_network
+        volumes: 
+            - fs-rabbitmq-data:/var/lib/rabbitmq
+
+    celery:
+        container_name: fs_celery
+        restart: on-failure
+        build:
+            context: .
+            dockerfile: backend.Dockerfile
+        command: celery -A app.tasks worker --loglevel=info
+        depends_on: 
+            - postgres
+            - rabbitmq
+        networks: 
+            - fs_network
+        env_file: 
+            - .env
+        volumes: 
+            - ./:/file_sharing
+        
+
 networks: 
     fs_network:
         driver: bridge
 
 volumes:
     fs-postgres-data:
+    fs-rabbitmq-data:

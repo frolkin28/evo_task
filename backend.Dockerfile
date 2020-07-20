@@ -9,4 +9,4 @@ RUN apt-get update \
 
 COPY . .
 
-ENTRYPOINT ["python3.7", "wsgi.py"]
+# ENTRYPOINT ["python3.7", "wsgi.py"]

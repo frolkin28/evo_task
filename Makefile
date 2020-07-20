@@ -12,3 +12,5 @@ freeze:
 	pip freeze > requirements.txt
 logs:
 	docker-compose logs
+postgres:
+	docker-compose exec postgres psql -U postgres -W
