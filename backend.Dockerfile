@@ -9,4 +9,4 @@ RUN apt-get update \
 
 COPY . .
 
-RUN mkdir uploads
+RUN mkdir -p uploads
