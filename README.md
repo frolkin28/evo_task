@@ -2,6 +2,10 @@
 
 You can try application on http://34.76.36.43:5000
 
+Single file page pattern: http:34.76.36.43:5000/file/uuid
+
+Download link pattern: http:34.76.36.43:5000/download/uuid
+
 To deploy project:
 
 1) create .env file
